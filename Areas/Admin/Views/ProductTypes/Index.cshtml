@@ -1,10 +1,11 @@
 ﻿@using Webshop.Models;
-
 @model IEnumerable<ProductTypes>
-
 @{
     ViewData["Title"] = "Index";
 }
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+
 
 <br />
 <br />
@@ -25,7 +26,6 @@
             </th>
             <th></th>
             <th></th>
-            
         </tr>
         @foreach (var item in Model)
         {
@@ -38,3 +38,25 @@
         }
     </table>
 </div>
+
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var save = '@TempData["save"]'
+            if(save!='') {
+                alertify.success(save);
+            }
+            var edit = '@TempData["edit"]'
+            if(edit!='') {
+                alertify.success(edit);
+            }
+            var del = '@TempData["delete"]'
+            if (del!='') {
+                alertify.error(del);
+            }
+        })
+    </script>
+}
+
+

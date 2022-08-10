@@ -1,5 +1,4 @@
 ﻿@model Webshop.Models.ProductTypes
-
 @{
     ViewData["Title"] = "Delete";
 }
@@ -8,7 +7,7 @@
 <h2 class="text-info">Delete Product Type</h2>
 <form asp-action="Delete" method="post">
     <div class="p-4 rounded border">
-        <input type="hidden" asp-for="Id"/>
+        <input type="hidden" asp-for="Id" />
         <div asp-validation-summary="ModelOnly" class="text-danger">
 
         </div>
@@ -28,8 +27,7 @@
     </div>
 </form>
 
-
 @section Scripts{
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

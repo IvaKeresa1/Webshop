@@ -9,7 +9,6 @@ using Webshop.Models;
 namespace Webshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
     public class ProductTypesController : Controller
     {
         private ApplicationDbContext _db;
@@ -18,8 +17,6 @@ namespace Webshop.Areas.Admin.Controllers
         {
             _db = db;
         }
-
-
         public IActionResult Index()
         {
             //var data = _db.ProductTypes.ToList();
@@ -84,7 +81,8 @@ namespace Webshop.Areas.Admin.Controllers
             return View(productTypes);
         }
 
-        //GET Edit Action Method
+
+        //GET Details Action Method
 
         public ActionResult Details(int? id)
         {
@@ -101,6 +99,15 @@ namespace Webshop.Areas.Admin.Controllers
             return View(productType);
         }
 
+        //POST Edit Action Method
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details(ProductTypes productTypes)
+        {
+            return RedirectToAction(nameof(Index));
+
+        }
 
         //GET Delete Action Method
 
@@ -123,7 +130,7 @@ namespace Webshop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, ProductTypes productTypes)
+        public async Task<IActionResult> Delete(int? id, ProductTypes productTypes)
         {
             if (id == null)
             {
@@ -144,7 +151,7 @@ namespace Webshop.Areas.Admin.Controllers
             {
                 _db.Remove(productType);
                 await _db.SaveChangesAsync();
-                TempData["edit"] = "Product type has been updated";
+                TempData["delete"] = "Product type has been deleted";
                 return RedirectToAction(nameof(Index));
             }
 

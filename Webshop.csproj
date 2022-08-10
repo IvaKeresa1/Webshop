@@ -23,6 +23,7 @@
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="Areas\Admin\Views\ProductTypes\" />
     <None Remove="Areas\Admin\Views\SpecialTag\" />
+    <None Remove="Areas\Admin\Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -54,5 +55,10 @@
     <Folder Include="Areas\Customer\Views\Home\" />
     <Folder Include="Areas\Admin\Views\ProductTypes\" />
     <Folder Include="Areas\Admin\Views\SpecialTag\" />
+    <Folder Include="Areas\Admin\Views\Product\" />
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\Images\" />
   </ItemGroup>
 </Project>
