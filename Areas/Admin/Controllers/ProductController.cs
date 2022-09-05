@@ -27,7 +27,19 @@ namespace Webshop.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(_db.Products.Include(c=>c.ProductTypes).Include(f=>f.SpecialTag).ToList());
+            return View(_db.Products.Include(c => c.ProductTypes).Include(f => f.SpecialTag).ToList());
+        }
+
+        //POST Index action method
+        //Sortiranje, probaj kasnije baš napraviti sort button
+        [HttpPost]
+        public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
+        {
+            var products = _db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).Where(c => c.Price >= lowAmount && c.Price <= largeAmount).ToList();
+            return View(products);
+            if(lowAmount==null || largeAmount == null) {
+                products = _db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList();
+            }
         }
 
         // GET Create method 
@@ -45,14 +57,17 @@ namespace Webshop.Areas.Admin.Controllers
 
 
             var searchProduct = _db.Products.FirstOrDefault(c => c.Name == product.Name);
-            if (searchProduct != null)
-            {
-                ViewBag.message = "This product is already exist";
-                ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
-                ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
-                return View(product);
-            }
 
+            if (ModelState.IsValid)
+            {
+                if (searchProduct != null)
+                {
+                    ViewBag.message = "This product already exist";
+                    ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
+                    ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
+                    return View(product);
+                }
+            }
             if (image != null)
             {
                 var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));

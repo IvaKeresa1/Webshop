@@ -24,6 +24,7 @@
     <None Remove="Areas\Admin\Views\ProductTypes\" />
     <None Remove="Areas\Admin\Views\SpecialTag\" />
     <None Remove="Areas\Admin\Views\Product\" />
+    <None Remove="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -57,6 +58,7 @@
     <Folder Include="Areas\Admin\Views\SpecialTag\" />
     <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="wwwroot\Images\" />
+    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Images\" />
