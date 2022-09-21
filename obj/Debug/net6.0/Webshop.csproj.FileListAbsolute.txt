@@ -271,3 +271,6 @@
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/JetBrains.Annotations.dll
+/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/X.PagedList.dll
+/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/X.PagedList.Mvc.Core.dll

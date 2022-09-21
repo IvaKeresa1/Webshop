@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Webshop.Data;
 using Webshop.Models;
 using Webshop.Utility;
+using X.PagedList;
 
 namespace Webshop.Controllers
 {
@@ -12,7 +13,7 @@ namespace Webshop.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext _db;
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger; 
 
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
@@ -21,9 +22,9 @@ namespace Webshop.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList());
+            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList().ToPagedList(page??1,9));
         }
 
         public IActionResult Privacy()

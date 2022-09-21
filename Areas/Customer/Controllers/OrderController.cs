@@ -35,7 +35,7 @@ namespace Webshop.Areas.Customer.Controllers
             List<Products> products = HttpContext.Session.Get<List<Products>>("products");
             if (products != null)
             {
-                foreach(var product in products)
+                foreach (var product in products)
                 {
                     OrderDetails orderDetails = new OrderDetails();
                     orderDetails.ProductId = product.Id;
@@ -46,15 +46,14 @@ namespace Webshop.Areas.Customer.Controllers
             anOrder.OrderNo = GetOrderNo();
             _db.Orders.Add(anOrder);
             await _db.SaveChangesAsync();
-            HttpContext.Session.Set("products", null);
-
+            HttpContext.Session.Set("products", new List<Products>());
             return View();
         }
 
-        //ovo bi bilo dobro prebaciti negdje da nije u controlleru myb??
+
         public string GetOrderNo()
         {
-            int rowCount = _db.Orders.ToList().Count()+1;
+            int rowCount = _db.Orders.ToList().Count() + 1;
             return rowCount.ToString("000");
         }
     }

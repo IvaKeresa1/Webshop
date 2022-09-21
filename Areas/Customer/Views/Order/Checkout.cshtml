@@ -33,8 +33,9 @@
                 <div class="col-8">
                     <input type="hidden" asp-for="Id" />
                     <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
                 </div>
-                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group row">
                 <div class="col-4">
@@ -42,8 +43,9 @@
                 </div>
                 <div class="col-8">
                     <input asp-for="PhoneNo" class="form-control" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+
                 </div>
-                <span asp-validation-for="PhoneNo" class="text-danger"></span>
             </div>
             <div class="form-group row">
                 <div class="col-4">
@@ -51,8 +53,8 @@
                 </div>
                 <div class="col-8">
                     <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group row">
                 <div class="col-4">
@@ -60,17 +62,18 @@
                 </div>
                 <div class="col-8">
                     <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="OrderDate"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="OrderDate" class="form-control" />
+                    <input asp-for="OrderDate" type="text" readonly="readonly" class="form-control" />
+                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+
                 </div>
-                <span asp-validation-for="OrderDate" class="text-danger"></span>
             </div>
 
         </div>
@@ -99,17 +102,27 @@
             <div class="text-right">
                 <h3>Total Price : @products.Sum(c => c.Price)</h3>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Place order" />
+            <div class="form-group text-right">
+                <input type="submit" value="Place Order" class="btn btn-success" />
             </div>
         </div>
 
-       
 
     </div>
 </form>
 
+
 @section Scripts{
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#OrderDate").datepicker({
+                showAnim: "slide"
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+
 }
 
