@@ -55,8 +55,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUHJvZHVjdFR5cGVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/Role/Assing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9Bc3NpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/Role/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/Role/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/Role/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/Role/Index.cshtml]

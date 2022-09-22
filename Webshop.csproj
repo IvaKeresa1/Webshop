@@ -31,6 +31,7 @@
     <None Remove="Areas\Identity\Pages\Account\Manage\" />
     <None Remove="Areas\Customer\Views\User\" />
     <None Remove="Areas\Admin\Views\Role\" />
+    <None Remove="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -71,6 +72,7 @@
     <Folder Include="Areas\Identity\Pages\Account\Manage\" />
     <Folder Include="Areas\Customer\Views\User\" />
     <Folder Include="Areas\Admin\Views\Role\" />
+    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Images\" />
