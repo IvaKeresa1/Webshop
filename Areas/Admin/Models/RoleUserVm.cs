@@ -1,11 +1,18 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Webshop.Areas.Admin.Models
 {
 	public class RoleUserVm
 	{
-		public RoleUserVm()
-		{
-		}
+		[Required]
+		[Display(Name="User")]
+		public string UserId { get; set; }
+
+        [Required]
+        [Display(Name = "Role")]
+        public string RoleId { get; set; }
+
 	}
 }
 

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Webshop.Areas.Admin.Models;
+using Webshop.Data;
 
 namespace Webshop.Areas.Customer.Controllers
 {
@@ -12,9 +15,14 @@ namespace Webshop.Areas.Customer.Controllers
     {
 
         RoleManager<IdentityRole> _roleManager;
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        UserManager<IdentityUser> _userManager;
+        ApplicationDbContext _db;
+
+        public RoleController(RoleManager<IdentityRole> roleManager, ApplicationDbContext db, UserManager<IdentityUser> userManager)
         {
+            _db = db;
             _roleManager = roleManager;
+            _userManager = userManager;
 
         }
         public IActionResult Index()
@@ -121,5 +129,31 @@ namespace Webshop.Areas.Customer.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Assign()
+        {
+            ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f=>f.LockoutEnd<DateTime.Now||f.LockoutEnd==null).ToList(),"Id","UserName");
+            ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Assign(RoleUserVm roleUser)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == roleUser.UserId);
+            var isCheckRoleAssign = await _userManager.IsInRoleAsync(user, roleUser.RoleId);
+            if (isCheckRoleAssign)
+            {
+                ViewBag.mgs = "This user already has this role";
+                return View();
+            }
+            var role = await _userManager.AddToRoleAsync(user, roleUser.RoleId);
+            if (role.Succeeded)
+            {
+                TempData["save"] = "User role has be assigned successfully";
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        
     }
 }
