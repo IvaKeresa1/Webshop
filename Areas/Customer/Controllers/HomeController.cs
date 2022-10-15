@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Webshop.Data;
@@ -24,7 +25,9 @@ namespace Webshop.Controllers
 
         public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList().ToPagedList(page??1,9));
+            Random rand = new Random();
+            //int skipper = rand.Next(0, _db.Set<Products>().Count());
+            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList().OrderBy(x => Guid.NewGuid()).Take(10).ToPagedList(page??1,9));
         }
 
         public IActionResult Privacy()

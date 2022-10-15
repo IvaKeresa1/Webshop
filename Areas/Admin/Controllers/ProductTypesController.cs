@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Data;
 using Webshop.Models;
-
 namespace Webshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Super user")]
     public class ProductTypesController : Controller
     {
         private ApplicationDbContext _db;
@@ -17,6 +18,8 @@ namespace Webshop.Areas.Admin.Controllers
         {
             _db = db;
         }
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             //var data = _db.ProductTypes.ToList();
@@ -48,7 +51,6 @@ namespace Webshop.Areas.Admin.Controllers
         }
 
         //GET Edit Action Method
-
         public ActionResult Edit(int? id)
         {
             if (id == null)

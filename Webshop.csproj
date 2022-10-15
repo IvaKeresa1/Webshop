@@ -32,6 +32,7 @@
     <None Remove="Areas\Customer\Views\User\" />
     <None Remove="Areas\Admin\Views\Role\" />
     <None Remove="Areas\Admin\Models\" />
+    <None Remove="Areas\Customer\Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -49,7 +50,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.3" />
   </ItemGroup>
 
@@ -73,6 +74,7 @@
     <Folder Include="Areas\Customer\Views\User\" />
     <Folder Include="Areas\Admin\Views\Role\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Customer\Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Images\" />

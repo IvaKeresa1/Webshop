@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Data;
@@ -21,6 +23,8 @@ namespace Webshop.Areas.Customer.Controllers
             _userManager = userManager;
         }
 
+
+        [Authorize(Roles = "Super user")]
         public IActionResult Index()
         {
             return View(_db.ApplicationUsers.ToList());
@@ -32,29 +36,28 @@ namespace Webshop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ApplicationUser? user)
+        public async Task<IActionResult> Create(ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
                 if (result.Succeeded)
                 {
+                    var isSaveRole = await _userManager.AddToRoleAsync(user, "User");
                     TempData["save"] = "User has been created successfully";
-                    return RedirectToAction(nameof(Index));
-                }
 
+                    return RedirectToAction("Index", "Home");
+                }
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-
-
             return View();
         }
 
-
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Edit(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -65,6 +68,7 @@ namespace Webshop.Areas.Customer.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Super user")]
         [HttpPost]
         public async Task<IActionResult> Edit(ApplicationUser user)
         {
@@ -84,6 +88,7 @@ namespace Webshop.Areas.Customer.Controllers
             return View(userInfo);
         }
 
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Details(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -94,6 +99,7 @@ namespace Webshop.Areas.Customer.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Lockout(string id)
         {
             if (id == null)
@@ -110,6 +116,7 @@ namespace Webshop.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Lockout(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUsers.FirstOrDefault(c=> c.Id== user.Id);
@@ -129,6 +136,7 @@ namespace Webshop.Areas.Customer.Controllers
             return View(userInfo);
         }
 
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult>Activate(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -141,6 +149,7 @@ namespace Webshop.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Activate(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
@@ -160,6 +169,7 @@ namespace Webshop.Areas.Customer.Controllers
             return View(userInfo);
         }
 
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Delete(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -171,6 +181,7 @@ namespace Webshop.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Delete(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
@@ -184,7 +195,7 @@ namespace Webshop.Areas.Customer.Controllers
 
             if (rowAffected > 0)
             {
-                TempData["save"] = "User has been deleted  successfully";
+                TempData["save"] = "User has been deleted successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);

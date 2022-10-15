@@ -1,0 +1,23 @@
+﻿@using Webshop.Models
+@model List<Products>
+
+
+<div class="dropdown">
+    @foreach (var product in Model)
+        {
+
+<a class="btn nav-link text-dark dropdown-toggle" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+        </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+            <li>
+                <a class="dropdown-item" type="button" asp-area="admin" asp-controller="category" asp-action="index">@product.ProductTypes</a>
+            </li>
+
+            </ul>
+        }
+    </div>  
+
+
+    

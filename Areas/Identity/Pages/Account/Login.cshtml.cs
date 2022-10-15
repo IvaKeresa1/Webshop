@@ -38,7 +38,7 @@ namespace Webshop.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public string ReturnUrl { get; set; }
+        public string? ReturnUrl { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -57,7 +57,7 @@ namespace Webshop.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string? returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -74,7 +74,7 @@ namespace Webshop.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        /*public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -119,7 +119,7 @@ namespace Webshop.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
-        } */
+        } 
 
     }
 }

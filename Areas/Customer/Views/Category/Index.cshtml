@@ -1,0 +1,26 @@
+﻿@using Webshop.Models
+@model List<ProductTypes>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<br />
+<br />
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        @*<label style="font-size:23px:color: steelblue">@product.ProductType</label>*@
+                        <a asp-action="Detail" asp-controller="Category" asp-route-id="@product.Id" class="btn btn-success pull-right btn-outline-info">@product.ProductType</a>
+
+                    </h4>
+                </div>
+                </div>
+            </div>
+            }
+        </div>

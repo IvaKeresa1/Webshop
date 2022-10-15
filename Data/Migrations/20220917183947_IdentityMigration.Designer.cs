@@ -15,7 +15,7 @@ namespace Webshop.Migrations
     [Migration("20220917183947_IdentityMigration")]
     partial class IdentityMigration
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

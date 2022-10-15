@@ -54,37 +54,37 @@ namespace Webshop.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Products product, IFormFile image)
         {
-
-
-            var searchProduct = _db.Products.FirstOrDefault(c => c.Name == product.Name);
-
-            if (ModelState.IsValid)
-            {
+            
+                var searchProduct = _db.Products.FirstOrDefault(c => c.Name == product.Name);
                 if (searchProduct != null)
                 {
-                    ViewBag.message = "This product already exist";
+                    ViewBag.message = "This product is already exist";
                     ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
                     ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
                     return View(product);
                 }
-            }
-            if (image != null)
-            {
-                var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
-                await image.CopyToAsync(new FileStream(name, FileMode.Create));
-                product.Image = "Images/" + image.FileName;
-            }
 
-            if (image == null)
-            {
-                product.Image = "Images/noimage.png";
-            }
-            _db.Products.Add(product);
-            await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                if (image != null)
+                {
+                    var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
+                    await image.CopyToAsync(new FileStream(name, FileMode.Create));
+                    product.Image = "Images/" + image.FileName;
+                }
+
+                if (image == null)
+                {
+                    product.Image = "Images/noimage.PNG";
+                }
+                _db.Products.Add(product);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            
 
             return View(product);
         }
+
+
+
 
         //GET Edit Action Method
 

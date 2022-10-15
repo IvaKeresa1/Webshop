@@ -19,7 +19,7 @@ namespace Webshop.Areas.Identity.Pages.Account
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> OnGetAsync(string userId, string code)
+        public async Task<IActionResult> OnGetAsync(string? userId, string code)
         {
             if (userId == null || code == null)
             {

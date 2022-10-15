@@ -143,7 +143,9 @@ namespace Webshop.Areas.Customer.Controllers
             var isCheckRoleAssign = await _userManager.IsInRoleAsync(user, roleUser.RoleId);
             if (isCheckRoleAssign)
             {
-                ViewBag.mgs = "This user already has this role";
+                ViewBag.mgs = "This user is already assigned for this role";
+                ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
+                ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
                 return View();
             }
             var role = await _userManager.AddToRoleAsync(user, roleUser.RoleId);
@@ -152,6 +154,24 @@ namespace Webshop.Areas.Customer.Controllers
                 TempData["save"] = "User role has be assigned successfully";
                 return RedirectToAction(nameof(Index));
             }
+            return View();
+        }
+
+        public ActionResult AssignUserRole()
+        {
+            var result = from ur in _db.UserRoles
+                         join r in _db.Roles on ur.RoleId equals r.Id
+                         join a in _db.ApplicationUsers on ur.UserId equals a.Id
+                         select new UserRoleMaping()
+                         {
+                             UserId = ur.UserId,
+                             RoleId = ur.RoleId,
+                             UserName = a.UserName,
+                             RoleName = r.Name
+
+                         };
+
+            ViewBag.UserRoles = result;
             return View();
         }
         

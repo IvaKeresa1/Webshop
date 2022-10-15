@@ -59,6 +59,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9Bc3NpZ24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/Role/AssignUserRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9Bc3NpZ25Vc2VyUm9sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/Role/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUm9sZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -101,6 +105,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Customer/Views/Category/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQ3VzdG9tZXIvVmlld3MvQ2F0ZWdvcnkvRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Customer/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQ3VzdG9tZXIvVmlld3MvQ2F0ZWdvcnkvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Customer/Views/Category/ProductDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQ3VzdG9tZXIvVmlld3MvQ2F0ZWdvcnkvUHJvZHVjdERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Areas/Customer/Views/Home/Cart.cshtml]
@@ -297,6 +313,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Views/Shared/_ButtonPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19CdXR0b25QYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Views/Shared/_Category.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19DYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Views/Shared/_CookieConsentPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Db29raWVDb25zZW50UGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/Views/Shared/_Layout.cshtml]
