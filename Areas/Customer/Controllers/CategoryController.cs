@@ -56,7 +56,7 @@ namespace Webshop.Areas.Customer.Controllers
         //POST category action method
         [HttpPost]
         [ActionName("Detail")]
-        public ActionResult ProductDetail(int? id)
+        public ActionResult CategoryDetail(int? id)
         {
             List<Products> products = new List<Products>();
             if (id == null)
@@ -82,6 +82,30 @@ namespace Webshop.Areas.Customer.Controllers
 
 
 
+        [HttpPost]
+        [ActionName("Detail")]
+        public ActionResult ProductDetail(int? id)
+        {
+            List<Products> products = new List<Products>();
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var product = _db.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            products = HttpContext.Session.Get<List<Products>>("products");
+            if (products == null)
+            {
+                products = new List<Products>();
+            }
+            products.Add(product);
+            HttpContext.Session.Set("products", products);
+            return RedirectToAction(nameof(ProductDetail));
+        }
     }
 }
