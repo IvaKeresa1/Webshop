@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Webshop.Data;
 
@@ -11,9 +12,10 @@ using Webshop.Data;
 namespace Webshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221016213607_FillingProductDb")]
+    partial class FillingProductDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,12 +175,10 @@ namespace Webshop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -215,12 +215,10 @@ namespace Webshop.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -328,6 +326,74 @@ namespace Webshop.Migrations
                     b.HasIndex("SpecialTagId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Image = "~/Images/areca.jpg",
+                            Name = "Areca palm",
+                            Price = 30m,
+                            ProductColor = "green",
+                            ProductTypeId = 6,
+                            SpecialTagId = 5,
+                            isAvailable = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Image = "~/Images/bamboo.jpg",
+                            Name = "Bamboo palm",
+                            Price = 12m,
+                            ProductColor = "green",
+                            ProductTypeId = 6,
+                            SpecialTagId = 5,
+                            isAvailable = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Image = "~/Images/macbook1.png",
+                            Name = "MacBook Pro 13",
+                            Price = 1243m,
+                            ProductColor = "white",
+                            ProductTypeId = 3,
+                            SpecialTagId = 4,
+                            isAvailable = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Image = "~/Images/macbook.png",
+                            Name = "MacBook Air 13",
+                            Price = 932m,
+                            ProductColor = "grey",
+                            ProductTypeId = 3,
+                            SpecialTagId = 3,
+                            isAvailable = true
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Image = "~/Images/book1.png",
+                            Name = "Jane Eyre",
+                            Price = 11m,
+                            ProductColor = "colorful",
+                            ProductTypeId = 5,
+                            SpecialTagId = 7,
+                            isAvailable = true
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Image = "~/Images/book2.png",
+                            Name = "Gone Girl",
+                            Price = 9m,
+                            ProductColor = "colorful",
+                            ProductTypeId = 5,
+                            SpecialTagId = 6,
+                            isAvailable = true
+                        });
                 });
 
             modelBuilder.Entity("Webshop.Models.ProductTypes", b =>
@@ -345,6 +411,28 @@ namespace Webshop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            ProductType = "Macbooks"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ProductType = "Shirts"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ProductType = "Books"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ProductType = "Plant"
+                        });
                 });
 
             modelBuilder.Entity("Webshop.Models.SpecialTag", b =>
@@ -362,6 +450,33 @@ namespace Webshop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SpecialTags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Name = "MacBook Air"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "MacBook Pro"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Palm"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Thriller"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Romance"
+                        });
                 });
 
             modelBuilder.Entity("Webshop.Models.ApplicationUser", b =>
