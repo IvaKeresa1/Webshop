@@ -66,7 +66,6 @@
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/MessagePack.Annotations.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.AspNetCore.Razor.Language.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.Bcl.AsyncInterfaces.dll
-/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.Build.Locator.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.CodeAnalysis.AnalyzerUtilities.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.CodeAnalysis.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.CodeAnalysis.CSharp.dll
@@ -274,3 +273,7 @@
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/JetBrains.Annotations.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/X.PagedList.dll
 /Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/X.PagedList.Mvc.Core.dll
+/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.Build.dll
+/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.Build.Framework.dll
+/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/ivakeresa/Projects/ECommerceWebshopProject/Webshop/bin/Debug/net6.0/Microsoft.NET.StringTools.dll

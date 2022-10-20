@@ -9,7 +9,7 @@ using Webshop.Models;
 namespace Webshop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Super user")]
+    [Authorize(Roles = "Super admin")]
     public class ProductTypesController : Controller
     {
         private ApplicationDbContext _db;

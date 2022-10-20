@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,17 +17,18 @@ namespace Webshop.Areas.Customer.Controllers
     {
         UserManager<IdentityUser> _userManager;
         ApplicationDbContext _db;
+        RoleManager<IdentityRole> _roleManager;
 
-        public UserController(UserManager<IdentityUser> userManager, ApplicationDbContext db)
+        public UserController(UserManager<IdentityUser> userManager, ApplicationDbContext db, RoleManager<IdentityRole> roleManager)
         {
-            _db = db;
             _userManager = userManager;
+            _db = db;
+            _roleManager = roleManager;
         }
 
-
-        [Authorize(Roles = "Super user")]
         public IActionResult Index()
         {
+            var dd = _userManager.GetUserId(HttpContext.User);
             return View(_db.ApplicationUsers.ToList());
         }
 
@@ -43,7 +45,15 @@ namespace Webshop.Areas.Customer.Controllers
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
                 if (result.Succeeded)
                 {
-                    var isSaveRole = await _userManager.AddToRoleAsync(user, "User");
+
+                    var userRole = "user";
+
+                    IdentityRole role = new IdentityRole();
+                    role.Name = userRole;
+
+                    await _roleManager.CreateAsync(role);
+
+                    var isSaveRole = await _userManager.AddToRoleAsync(user, userRole);
                     TempData["save"] = "User has been created successfully";
 
                     return RedirectToAction("Index", "Home");
@@ -53,11 +63,11 @@ namespace Webshop.Areas.Customer.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
             return View();
         }
 
-        [Authorize(Roles = "Super user")]
+
+
         public async Task<IActionResult> Edit(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -68,7 +78,6 @@ namespace Webshop.Areas.Customer.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Super user")]
         [HttpPost]
         public async Task<IActionResult> Edit(ApplicationUser user)
         {
@@ -88,7 +97,7 @@ namespace Webshop.Areas.Customer.Controllers
             return View(userInfo);
         }
 
-        [Authorize(Roles = "Super user")]
+
         public async Task<IActionResult> Details(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -99,7 +108,6 @@ namespace Webshop.Areas.Customer.Controllers
             return View(user);
         }
 
-        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Lockout(string id)
         {
             if (id == null)
@@ -107,7 +115,6 @@ namespace Webshop.Areas.Customer.Controllers
                 return NotFound();
             }
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
-
             if (user == null)
             {
                 return NotFound();
@@ -116,18 +123,16 @@ namespace Webshop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Lockout(ApplicationUser user)
         {
-            var userInfo = _db.ApplicationUsers.FirstOrDefault(c=> c.Id== user.Id);
-            if(userInfo== null)
+            var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
+            if (userInfo == null)
             {
                 return NotFound();
-            }
 
+            }
             userInfo.LockoutEnd = DateTime.Now.AddYears(100);
             int rowAffected = _db.SaveChanges();
-
             if (rowAffected > 0)
             {
                 TempData["save"] = "User has been lockout successfully";
@@ -136,40 +141,35 @@ namespace Webshop.Areas.Customer.Controllers
             return View(userInfo);
         }
 
-        [Authorize(Roles = "Super user")]
-        public async Task<IActionResult>Activate(string id)
+        public async Task<IActionResult> Active(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
-
             return View(user);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Super user")]
-        public async Task<IActionResult> Activate(ApplicationUser user)
+        public async Task<IActionResult> Active(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
             if (userInfo == null)
             {
                 return NotFound();
-            }
 
+            }
             userInfo.LockoutEnd = DateTime.Now.AddDays(-1);
             int rowAffected = _db.SaveChanges();
-
             if (rowAffected > 0)
             {
-                TempData["save"] = "User has been activated successfully";
+                TempData["save"] = "User has been active successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);
         }
 
-        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Delete(string id)
         {
             var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -181,18 +181,16 @@ namespace Webshop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Super user")]
         public async Task<IActionResult> Delete(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
             if (userInfo == null)
             {
                 return NotFound();
-            }
 
+            }
             _db.ApplicationUsers.Remove(userInfo);
             int rowAffected = _db.SaveChanges();
-
             if (rowAffected > 0)
             {
                 TempData["save"] = "User has been deleted successfully";
@@ -202,3 +200,4 @@ namespace Webshop.Areas.Customer.Controllers
         }
     }
 }
+

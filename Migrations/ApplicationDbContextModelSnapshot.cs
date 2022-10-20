@@ -17,7 +17,7 @@ namespace Webshop.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -72,77 +72,6 @@ namespace Webshop.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -224,6 +153,79 @@ namespace Webshop.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Webshop.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Webshop.Models.Order", b =>
@@ -328,68 +330,57 @@ namespace Webshop.Migrations
                     b.HasData(
                         new
                         {
+                            Id = 1,
+                            Image = "Images/monstera1.jpg",
+                            Name = "Monstera deliciosa",
+                            Price = 30m,
+                            ProductColor = "green",
+                            ProductTypeId = 3,
+                            SpecialTagId = 1,
+                            isAvailable = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Image = "Images/iphone.png",
+                            Name = "Iphone 13",
+                            Price = 1000m,
+                            ProductColor = "white",
+                            ProductTypeId = 1,
+                            SpecialTagId = 2,
+                            isAvailable = true
+                        },
+                        new
+                        {
                             Id = 3,
-                            Image = "~/Images/areca.jpg",
+                            Image = "Images/areca.jpg",
                             Name = "Areca palm",
                             Price = 30m,
                             ProductColor = "green",
-                            ProductTypeId = 6,
+                            ProductTypeId = 3,
                             SpecialTagId = 5,
                             isAvailable = true
                         },
                         new
                         {
                             Id = 4,
-                            Image = "~/Images/bamboo.jpg",
+                            Image = "Images/bamboo.jpg",
                             Name = "Bamboo palm",
                             Price = 12m,
                             ProductColor = "green",
-                            ProductTypeId = 6,
+                            ProductTypeId = 3,
                             SpecialTagId = 5,
                             isAvailable = true
                         },
                         new
                         {
                             Id = 5,
-                            Image = "~/Images/macbook1.png",
+                            Image = "Images/macbook1.png",
                             Name = "MacBook Pro 13",
                             Price = 1243m,
                             ProductColor = "white",
-                            ProductTypeId = 3,
+                            ProductTypeId = 2,
                             SpecialTagId = 4,
-                            isAvailable = true
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Image = "~/Images/macbook.png",
-                            Name = "MacBook Air 13",
-                            Price = 932m,
-                            ProductColor = "grey",
-                            ProductTypeId = 3,
-                            SpecialTagId = 3,
-                            isAvailable = true
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Image = "~/Images/book1.png",
-                            Name = "Jane Eyre",
-                            Price = 11m,
-                            ProductColor = "colorful",
-                            ProductTypeId = 5,
-                            SpecialTagId = 7,
-                            isAvailable = true
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Image = "~/Images/book2.png",
-                            Name = "Gone Girl",
-                            Price = 9m,
-                            ProductColor = "colorful",
-                            ProductTypeId = 5,
-                            SpecialTagId = 6,
                             isAvailable = true
                         });
                 });
@@ -413,23 +404,18 @@ namespace Webshop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 3,
+                            Id = 10,
+                            ProductType = "Phones"
+                        },
+                        new
+                        {
+                            Id = 11,
                             ProductType = "Macbooks"
                         },
                         new
                         {
-                            Id = 4,
-                            ProductType = "Shirts"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ProductType = "Books"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ProductType = "Plant"
+                            Id = 12,
+                            ProductType = "Plants"
                         });
                 });
 
@@ -450,6 +436,16 @@ namespace Webshop.Migrations
                     b.ToTable("SpecialTags");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Monstera"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Iphones"
+                        },
                         new
                         {
                             Id = 3,
@@ -477,21 +473,6 @@ namespace Webshop.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Webshop.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -503,7 +484,7 @@ namespace Webshop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Webshop.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -512,7 +493,7 @@ namespace Webshop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Webshop.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -527,7 +508,7 @@ namespace Webshop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Webshop.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -536,7 +517,7 @@ namespace Webshop.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Webshop.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

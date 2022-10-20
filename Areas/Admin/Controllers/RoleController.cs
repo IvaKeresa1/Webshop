@@ -84,7 +84,7 @@ namespace Webshop.Areas.Customer.Controllers
             var isExist = await _roleManager.RoleExistsAsync(role.Name);
             if (isExist)
             {
-                ViewBag.mgs = "This role is aldeady exist";
+                ViewBag.mgs = "This role aldeady exists";
                 ViewBag.name = name;
                 return View();
             }

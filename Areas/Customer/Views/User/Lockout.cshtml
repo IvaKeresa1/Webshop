@@ -4,7 +4,7 @@
 }
 <br />
 
-<h2 class="text-info">Locout user</h2>
+<h2 class="text-info">Lockout user</h2>
 <form asp-action="Lockout" method="post" id="user-form" enctype="multipart/form-data">
     <div class="p-4 rounded border">
         <div asp-validation-summary="ModelOnly" class="text-danger">
@@ -12,7 +12,7 @@
         </div>
         <input type="hidden" asp-for="Id" value="@Model.Id" />
         <h3>@ViewBag.message</h3>
-        <h3>Do you want to lockout this user?</h3>
+        <h3>Do you want to lockout this user ?</h3>
         <br />
         <div class="form-group row">
             <div class="col-2">
@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Lockout" />
+            <input type="submit" class="btn btn-primary" value="Lokout" />
             <a asp-action="Index" class="btn btn-success">Back to List</a>
         </div>
     </div>
@@ -53,23 +53,7 @@
 @section Scripts{
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-    <script>$(document).ready(function () {
-            $("#user-form").validate({
-                rules: {
-                    UserName: {
-                        required: true,
-                    },
-                    PasswordHash: {
-                        required: true,
-                    }
-                },
-                messages: {
-                    UserName: "Enter your email",
-                    PasswordHash: "Enter your password"
-                }
-
-            });
-        });</script>
+    <script>});
+            });</script>
 }
-
 
