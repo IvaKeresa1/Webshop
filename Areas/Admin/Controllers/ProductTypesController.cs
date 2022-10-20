@@ -22,7 +22,6 @@ namespace Webshop.Areas.Admin.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            //var data = _db.ProductTypes.ToList();
             return View(_db.ProductTypes.ToList());
         }
 

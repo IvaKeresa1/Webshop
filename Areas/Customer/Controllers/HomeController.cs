@@ -26,7 +26,6 @@ namespace Webshop.Controllers
         public IActionResult Index(int? page)
         {
             Random rand = new Random();
-            //int skipper = rand.Next(0, _db.Set<Products>().Count());
             return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList().OrderBy(x => Guid.NewGuid()).Take(10).ToPagedList(page??1,9));
         }
 

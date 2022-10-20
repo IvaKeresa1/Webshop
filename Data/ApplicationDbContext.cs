@@ -19,9 +19,9 @@ namespace Webshop.Data
 
             builder
                 .Entity<ProductTypes>().HasData(
-                new ProductTypes { Id = 10, ProductType = "Phones" },
-                new ProductTypes { Id = 11, ProductType = "Macbooks" },
-                new ProductTypes { Id = 12, ProductType = "Plants" }
+                new ProductTypes { Id = 1, ProductType = "Phones" },
+                new ProductTypes { Id = 2, ProductType = "Macbooks" },
+                new ProductTypes { Id = 3, ProductType = "Plants" }
 
 
                 );

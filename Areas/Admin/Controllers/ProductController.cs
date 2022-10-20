@@ -30,8 +30,7 @@ namespace Webshop.Areas.Admin.Controllers
             return View(_db.Products.Include(c => c.ProductTypes).Include(f => f.SpecialTag).ToList());
         }
 
-        //POST Index action method
-        //Sortiranje, probaj kasnije baš napraviti sort button
+        
         [HttpPost]
         public IActionResult Index(decimal? lowAmount, decimal? largeAmount)
         {
@@ -82,7 +81,6 @@ namespace Webshop.Areas.Admin.Controllers
 
             return View(product);
         }
-
 
 
 
@@ -155,7 +153,7 @@ namespace Webshop.Areas.Admin.Controllers
             return View(product);
         }
 
-        //GET Delete Ac
+        //GET Delete Action
 
         public ActionResult Delete(int? id)
         {
